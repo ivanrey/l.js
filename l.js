@@ -38,7 +38,8 @@
 		, scriptTag = scripts[scripts[length]-1]
 		, script  = scriptTag.innerHTML.replace(/^\s+|\s+$/g,'')
 		, appendElmt = function(type,attrs,cb){
-			var e = D.createElement(type), i;
+			var e = D.createElement(type), i, nonce = scriptTag && (scriptTag.nonce || (scriptTag.getAttribute && scriptTag.getAttribute('nonce')));
+			nonce && e.setAttribute('nonce', nonce);
 			if( cb ){ //-- this is not intended to be used for link
 				if( e[readyState] ){
 					e[onreadystatechange] = function(){
